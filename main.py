@@ -30,18 +30,7 @@ class OpenAIResponder:
         pass
 
 
-# 簡潔に答えるサブクラス（プロンプト固定）
-class SimpleResponder(OpenAIResponder):
-    def get_response(self, user_prompt: str) -> str:
-        # システムプロンプトは「簡潔に回答してください」
-        pass
 
-
-# 詳細に答えるサブクラス（プロンプト固定）
-class DetailedResponder(OpenAIResponder):
-    def get_response(self, user_prompt: str) -> str:
-        # システムプロンプトは「詳細に回答してください」
-        pass
 
 
 # 使用例（メイン処理）
@@ -49,8 +38,17 @@ if __name__ == "__main__":
     question = "pythonとは"
     client = OpenAI(api_key=os.environ["API_KEY"])
 
-    simple = SimpleResponder(client, model="gpt-4o-mini")
-    print(simple.get_response(question))
+    # モデル名（例：gpt-4o-mini）
+    model_name = "gpt-4o-mini"
 
-    detailed = DetailedResponder(client, model="gpt-4o-mini")
-    print(detailed.get_response(question))
+    # クラスのインスタンス化
+    responder = OpenAIResponder(client, model_name)
+
+    # 質問とシステムプロンプトを設定
+    current_question = "Pythonとは何ですか？"
+    system_prompt = "日本語で簡潔に説明してください。"
+
+    # レスポンスを取得して表示
+    response_text = responder.get_response(current_question, system_prompt)
+    print(response_text)
+
