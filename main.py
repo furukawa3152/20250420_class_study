@@ -7,7 +7,7 @@ class get_openai_response:
         self.client = OpenAI(api_key=os.environ["API_KEY"])
         self.model = model
 
-    def get_response(self, question: str) -> str:
+    def get_response(self, user_prompt: str) -> str:
         # OpenAI API を呼び出し、簡潔な回答を得る
         pass
 
@@ -35,7 +35,6 @@ class OpenAIResponder:
 
 # 使用例（メイン処理）
 if __name__ == "__main__":
-    question = "pythonとは"
     client = OpenAI(api_key=os.environ["API_KEY"])
 
     # モデル名（例：gpt-4o-mini）
